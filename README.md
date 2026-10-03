@@ -114,10 +114,10 @@ HAVING COUNT(*) = 2 AND COUNT(DISTINCT b.author) = 1;
 
 Если выполнены запросы для наполнения таблиц тестовыми данными, то мы получим от вышеуказанного запроса следующий ответ:
 
-|name|author|books|
-|----|------|-----|
-|Ivan Ivanov|William Shakespeare|Romeo and Juliet, Hamlet|
-|Marina Ivanova|Harper Lee|To Kill a Mockingbird, Go Set a Watchman|
+| name           | author              | books                                    |
+|----------------|---------------------|------------------------------------------|
+| Ivan Ivanov    | William Shakespeare | Romeo and Juliet, Hamlet                 |
+| Marina Ivanova | Harper Lee          | To Kill a Mockingbird, Go Set a Watchman |
 
 ### Проверка задания 1
 
@@ -149,20 +149,21 @@ GROUP BY
 
 Этот запрос выдает следующий результат:
 
-| id | first_name | last_name  | birthday   | age | author              | books_count | books                                                  | days_in_hands |
-|----|------------|------------|------------|-----|---------------------|-------------|--------------------------------------------------------|---------------|
-| 1  | Ivan       | Ivanov     | 2012-01-01 | 14  | William Shakespeare | 2           | Hamlet, Romeo and Juliet                               | 7, 5          |
-| 2  | Marina     | Ivanova    | 2011-03-01 | 15  | Harper Lee          | 2           | To Kill a Mockingbird, Go Set a Watchman               | 7, 6          |
-| 3  | Petr       | Petrov     | 2013-02-20 | 13  | Leo Tolstoy         | 2           | War and Peace, Anna Karenina                           | 36, 67        |
-| 4  | Vasya      | Pupkin     | 1990-01-01 | 36  | William Shakespeare | 2           | Romeo and Juliet, Hamlet                               | 10, 7         |
-| 5  | Oleg       | Kotov      | 2020-03-05 | 6   | Harper Lee          | 2           | Go Set a Watchman, The Land of Sweet Forever           | 7, 9          |
-| 6  | Aleksey    | Alekseyev  | 2010-05-18 | 16  | J. D. Salinger      | 1           | The Catcher in the Rye                                 | 10            |
-| 6  | Aleksey    | Alekseyev  | 2010-05-18 | 16  | William Shakespeare | 2           | Hamlet, King Lear                                      | 9, 7          |
-| 7  | Alexander  | Petrov     | 2012-03-02 | 14  | J. D. Salinger      | 3           | The Catcher in the Rye, Nine Stories, Franny and Zooey | 6, 9, 10      |
-| 8  | Ilya       | Ilyin      | 2014-05-24 | 12  | J. D. Salinger      | 1           | Franny and Zooey                                       | 9             |
-| 8  | Ilya       | Ilyin      | 2014-05-24 | 12  | William Shakespeare | 1           | Romeo and Juliet                                       | 8             |
-| 9  | Vladimir   | Vladimirov | 2013-06-09 | 13  | J. D. Salinger      | 1           | The Catcher in the Rye                                 | 7             |
-| 10 | Danil      | Danilov    | 2015-07-25 | 11  | Leo Tolstoy         | 2           | Anna Karenina, War and Peace                           | 10            |
+| id | first_name | last_name   | birthday   | age | author              | books_count | books                                                  | days_in_hands |
+|----|------------|-------------|------------|-----|---------------------|-------------|--------------------------------------------------------|---------------|
+| 1  | Ivan       | Ivanov      | 2012-01-01 | 14  | William Shakespeare | 2           | Hamlet, Romeo and Juliet                               | 7, 5          |
+| 2  | Marina     | Ivanova     | 2011-03-01 | 15  | Harper Lee          | 2           | To Kill a Mockingbird, Go Set a Watchman               | 7, 6          |
+| 3  | Petr       | Petrov      | 2013-02-20 | 13  | Leo Tolstoy         | 2           | War and Peace, Anna Karenina                           | 36, 67        |
+| 4  | Vasya      | Pupkin      | 1990-01-01 | 36  | William Shakespeare | 2           | Romeo and Juliet, Hamlet                               | 10, 7         |
+| 5  | Oleg       | Kotov       | 2020-03-05 | 6   | Harper Lee          | 2           | Go Set a Watchman, The Land of Sweet Forever           | 7, 9          |
+| 6  | Aleksey    | Alekseyev   | 2010-05-18 | 16  | J. D. Salinger      | 1           | The Catcher in the Rye                                 | 10            |
+| 6  | Aleksey    | Alekseyev   | 2010-05-18 | 16  | William Shakespeare | 2           | Hamlet, King Lear                                      | 9, 7          |
+| 7  | Alexander  | Petrov      | 2012-03-02 | 14  | J. D. Salinger      | 3           | The Catcher in the Rye, Nine Stories, Franny and Zooey | 6, 9, 10      |
+| 8  | Ilya       | Ilyin       | 2014-05-24 | 12  | J. D. Salinger      | 1           | Franny and Zooey                                       | 9             |
+| 8  | Ilya       | Ilyin       | 2014-05-24 | 12  | William Shakespeare | 1           | Romeo and Juliet                                       | 8             |
+| 9  | Vladimir   | Vladimirov  | 2013-06-09 | 13  | J. D. Salinger      | 1           | The Catcher in the Rye                                 | 7             |
+| 10 | Danil      | Danilov     | 2015-07-25 | 11  | Leo Tolstoy         | 2           | Anna Karenina, War and Peace                           | 10            |
+| 11 | Vladislav  | Vladislavov | 2014-06-05 | 12  | null                | 0           | null                                                   | null          |
 
 Исходя из этой таблицы видно, что:
 
