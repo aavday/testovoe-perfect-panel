@@ -183,6 +183,12 @@ GROUP BY
 
 ## Решение задания 2
 
+Стэк:
+
+1. PHP 8.4
+2. Laravel (starter kit Breeze для упрощения аутентификации и получения токена)
+3. PostgreSQL
+
 ### Инструкцию по деплою приложения
 
 1. Склонировать репозиторий
@@ -193,8 +199,8 @@ GROUP BY
 6. Запустить сидеры: `docker compose exec app php artisan migrate` (просидит тестового пользователю в базу)
 7. Запустить приложение по дефолтному адресу: http://localhost:8080
 8. Авторизоваться в форме под тестовым юзеров:
-login: `test@example.com`
-password: `password'
+email: `test@example.com`
+password: `password`
 9. Получить токен по кнопке "Create token"
 10. Скопировать полученный токен и пользоваться API запросами
 
@@ -217,7 +223,7 @@ password: `password'
 
 Параметры: currency - фильтр по коду валюты, использовать в формате `api/v1/rates?currency=btc` или `api/v1/rates?currency[]=btc&currency[]=eth` для нескольких значений
 
-Пример использования: http://localhost:8080/api/v1/rates?currency[]=btc&currency[]=eth
+Пример использования: GET http://localhost:8080/api/v1/rates?currency[]=btc&currency[]=eth
 
 Пример вывода: 
 
@@ -246,7 +252,7 @@ password: `password'
 }
 ```
 
-Пример использования: http://localhost:8080/api/v1/convert
+Пример использования: POST http://localhost:8080/api/v1/convert
 POST body:
 
 ```
