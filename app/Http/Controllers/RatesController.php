@@ -48,12 +48,18 @@ class RatesController extends Controller
      * @throws ConnectionException
      */
     public function convert(Request $request) {
-        $originalRates = Http::get(config('services.rates.api_url'))->json();
         $currencyFrom = strtoupper($request->input('currency_from'));
         $currencyTo = strtoupper($request->input('currency_to'));
 
+        if ($currencyFrom !== 'USD' && $currencyTo !== 'USD' || $currencyFrom === $currencyTo) {
+            return response()->json([
+                'status' => 'error',
+                'code' => 400,
+                'message' => 'Can only convert from USD to any coin or vice versa'
+            ], 400);
+        }
+
         $areWeBuyingCoins = $currencyFrom === 'USD';
-        $findCurrency = $areWeBuyingCoins ? $currencyTo : $currencyFrom;
 
         $value = round($request->input('value'), $areWeBuyingCoins ? 2 : 10);
 
@@ -65,13 +71,16 @@ class RatesController extends Controller
             ], 400);
         }
 
-        $rate = array_filter($originalRates, function ($item) use ($findCurrency) {
+        $originalRates = Http::get(config('services.rates.api_url'))->json();
+        $findCurrency = $areWeBuyingCoins ? $currencyTo : $currencyFrom;
+
+        $rate = array_values(array_filter($originalRates, function ($item) use ($findCurrency) {
             return $item['symbol'] === $findCurrency;
-        })[0]['quotes']['USD']['price'];
+        }))[0]['quotes']['USD']['price'];
         $rateWithCommission = $rate * config('services.rates.commission');
         $rateWithCommissionRounded = round($rateWithCommission, 10);
 
-        $convertedValue = $areWeBuyingCoins ? $rateWithCommissionRounded / $value : $rateWithCommissionRounded * $value;
+        $convertedValue = $areWeBuyingCoins ? $value / $rateWithCommissionRounded : $rateWithCommissionRounded * $value;
         $convertedValueRounded = round($convertedValue, $areWeBuyingCoins ? 10 : 2);
 
         return response()->json([
