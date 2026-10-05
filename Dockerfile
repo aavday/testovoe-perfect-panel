@@ -16,6 +16,8 @@ RUN apk add --no-cache \
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_pgsql pgsql gd zip bcmath
 
+RUN apk add --no-cache nodejs npm
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
@@ -23,6 +25,9 @@ WORKDIR /var/www
 COPY --chown=www-data:www-data . /var/www
 
 RUN composer install --no-interaction --optimize-autoloader
+
+RUN npm i
+RUN npm run build
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
