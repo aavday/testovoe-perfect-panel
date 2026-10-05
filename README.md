@@ -192,21 +192,21 @@ GROUP BY
 ### Инструкцию по деплою приложения
 
 1. Склонировать репозиторий
-2. Поднять докер контейнеры (при билде в контейнере автоматически произойдет `composer install` и `npm install` + `npm run build`)
-3. Скопировать .env файл на основе .env.example: `cp .env.example .env`
-4. Сгенерировать ключ Laravel приложения: `docker compose exec app php artisan key:generate`
-5. Запустить миграции: `docker compose exec app php artisan migrate`
-6. Запустить сидеры: `docker compose exec app php artisan migrate` (просидит тестового пользователю в базу)
+2. Поднять докер контейнеры (при билде в контейнере автоматически произойдет ```composer install``` и ```npm install``` + ```npm run build```)
+3. Скопировать .env файл на основе .env.example: ```cp .env.example .env```
+4. Сгенерировать ключ Laravel приложения: ```docker compose exec app php artisan key:generate```
+5. Запустить миграции: ```docker compose exec app php artisan migrate```
+6. Запустить сидеры: ```docker compose exec app php artisan migrate``` (просидит тестового пользователю в базу)
 7. Запустить приложение по дефолтному адресу: http://localhost:8080
 8. Авторизоваться в форме под тестовым юзеров:
-email: `test@example.com`
-password: `password`
+email: ```test@example.com```
+password: ```password```
 9. Получить токен по кнопке "Create token"
 10. Скопировать полученный токен и пользоваться API запросами
 
 ### Реализованные методы
 
-При использовании всех методов требуется указывать в заголовке `Authorization` токен `Bearer <полученный ранее токен>`
+При использовании всех методов требуется указывать в заголовке ```Authorization``` токен ```Bearer <полученный ранее токен>```
 При некорректном или отсутствующем токене выдается ошибка:
 
 ```
@@ -217,11 +217,11 @@ password: `password`
 }
 ```
 
-1. GET `/api/v1/rates`
+1. GET ```/api/v1/rates```
 
 Выводит данные по курсу валют относительно USD + комиссия 2%.
 
-Параметры: currency - фильтр по коду валюты, использовать в формате `api/v1/rates?currency=btc` или `api/v1/rates?currency[]=btc&currency[]=eth` для нескольких значений
+Параметры: currency - фильтр по коду валюты, использовать в формате ```api/v1/rates?currency=btc``` или ```api/v1/rates?currency[]=btc&currency[]=eth``` для нескольких значений
 
 Пример использования: GET http://localhost:8080/api/v1/rates?currency[]=btc&currency[]=eth
 
@@ -238,7 +238,7 @@ password: `password`
 }
 ```
 
-2. POST `api/v1/convert`
+2. POST ```api/v1/convert```
 
 Конвертирует валюту с комиссией 2% либо из USD в указанную валюту, либо наоборот.
 
