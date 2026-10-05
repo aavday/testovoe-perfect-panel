@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'rates' => [
+        'api_url' => env('RATES_API_URL'),
+        'commission' => env('RATES_COMMISSION'),
+    ]
 ];
